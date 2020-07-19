@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.pwdEdt
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kr.co.tjoeun.daily10minutes_20200719.utils.ServerUtil
+import org.json.JSONObject
 
 class SignUpActivity : BaseActivity() {
 
@@ -26,7 +27,7 @@ class SignUpActivity : BaseActivity() {
 //        => 괜찮으면 실제로 서버에 가입 요청
         okBtn.setOnClickListener {
 
-            val inputEmail = emailEdt.text.toString()
+            val inputEmail = signUpEmailEdt.text.toString()
 
             if (inputEmail.isEmpty()) {
                 Toast.makeText(mContext, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -60,13 +61,19 @@ class SignUpActivity : BaseActivity() {
 
 //            이메일 / 비번 / 닉네임 검사를 모두 통과한 상황
 //            서버에 실제로 가입 요청
-//            ServerUtil.
+            ServerUtil.putRequestSignUp(mContext, inputEmail, inputPw, inputNickName, object : ServerUtil.JsonResponseHandler{
+
+                override fun onResponse(json: JSONObject) {
+
+                }
+
+            })
 
         }
 
 
 //        EditText (비번 입력칸) 에 글자를 타이핑하는 이벤트 체크
-        pwdEdt.addTextChangedListener(object : TextWatcher {
+        signUpPwdEdt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
 
             }
@@ -88,7 +95,7 @@ class SignUpActivity : BaseActivity() {
     fun checkPasswords() {
 
 //        입력한 비밀번호
-        val inputPw = pwdEdt.text.toString()
+        val inputPw = signUpPwdEdt.text.toString()
 
         if (inputPw.isEmpty() ) {
             pwCheckResultTxt.text = "비밀번호를 입력해주세요."
