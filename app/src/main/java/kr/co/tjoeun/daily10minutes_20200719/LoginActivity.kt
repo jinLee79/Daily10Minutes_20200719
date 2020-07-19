@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
+import kr.co.tjoeun.daily10minutes_20200719.utils.ContextUtil
 import kr.co.tjoeun.daily10minutes_20200719.utils.ServerUtil
 import org.json.JSONObject
 
@@ -44,7 +45,7 @@ class LoginActivity : BaseActivity() {
                         val token = data.getString("token")
 
 //                        추출된 토큰을 기기에 저장해야 함.
-
+                        ContextUtil.setLoginUserToken(mContext, token)
 
                     }
                     else {
