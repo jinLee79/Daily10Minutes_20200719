@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:padding="10dp">
+    android:padding="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,6 +28,7 @@
         android:text="아이디"/>
 
     <EditText
+        android:id="@+id/emailEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="이메일 양식으로 입력"/>
@@ -39,12 +40,14 @@
         android:text="비밀번호"/>
 
     <EditText
+        android:id="@+id/pwdEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="비밀번호 입력"
         android:inputType="textPassword"/>
 
     <Button
+        android:id="@+id/loginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="로그인"
