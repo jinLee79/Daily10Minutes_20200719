@@ -6,8 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.pwdEdt
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kr.co.tjoeun.daily10minutes_20200719.utils.ServerUtil
 import org.json.JSONObject
@@ -67,7 +65,7 @@ class SignUpActivity : BaseActivity() {
 
 //                    서버가 알려주는 코드값이 200이면 가입 성공처리
 //                    아니라면 가입 실패 처리
-                    val code = json.getInt()
+                    val code = json.getInt("code")
                     if (code == 200) {
                         runOnUiThread {
                             Toast.makeText(mContext, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show()
