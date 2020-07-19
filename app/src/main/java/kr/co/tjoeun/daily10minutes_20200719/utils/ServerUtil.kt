@@ -2,6 +2,7 @@ package kr.co.tjoeun.daily10minutes_20200719.utils
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
