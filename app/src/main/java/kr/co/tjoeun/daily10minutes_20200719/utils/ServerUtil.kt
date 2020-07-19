@@ -17,7 +17,7 @@ class ServerUtil {
         fun onResponse(json: JSONObject)
     }
 
-//    ServerUtil클래스의 static 함수 / 변수들을 저장할 공간.
+//    ServerUtil클래스의 static 함수 / 변수들을 저장할 공간 (companion object).
 
     companion object {
 
