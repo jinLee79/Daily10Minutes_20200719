@@ -27,7 +27,7 @@ class SignUpActivity : BaseActivity() {
 //        => 괜찮으면 실제로 서버에 가입 요청
         okBtn.setOnClickListener {
 
-            val inputEmail = signUpEmailEdt.text.toString()
+            val inputEmail = emailEdt.text.toString()
 
             if (inputEmail.isEmpty()) {
                 Toast.makeText(mContext, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -65,6 +65,25 @@ class SignUpActivity : BaseActivity() {
 
                 override fun onResponse(json: JSONObject) {
 
+//                    서버가 알려주는 코드값이 200이면 가입 성공처리
+//                    아니라면 가입 실패 처리
+                    val code = json.getInt()
+                    if (code == 200) {
+                        runOnUiThread {
+                            Toast.makeText(mContext, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show()
+//                            로그인 화면으로 복귀
+                            finish()
+                        }
+                    }
+                    else {
+//                        가입 실패 => 왜 실패했는지 토스트로 출력
+                        val message = json.getString("message")
+
+                        runOnUiThread {
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
                 }
 
             })
@@ -73,7 +92,7 @@ class SignUpActivity : BaseActivity() {
 
 
 //        EditText (비번 입력칸) 에 글자를 타이핑하는 이벤트 체크
-        signUpPwdEdt.addTextChangedListener(object : TextWatcher {
+        pwdEdt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
 
             }
@@ -95,7 +114,7 @@ class SignUpActivity : BaseActivity() {
     fun checkPasswords() {
 
 //        입력한 비밀번호
-        val inputPw = signUpPwdEdt.text.toString()
+        val inputPw = pwdEdt.text.toString()
 
         if (inputPw.isEmpty() ) {
             pwCheckResultTxt.text = "비밀번호를 입력해주세요."
