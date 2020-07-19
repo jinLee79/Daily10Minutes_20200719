@@ -1,5 +1,6 @@
 package kr.co.tjoeun.daily10minutes_20200719
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
@@ -47,9 +48,13 @@ class LoginActivity : BaseActivity() {
                         }
                     }
                 }
-
             })
+        }
 
+        signUpBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext, SignUpActivity::class.java)
+            startActivity(myIntent)
         }
 
     }
