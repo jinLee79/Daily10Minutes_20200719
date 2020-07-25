@@ -109,15 +109,17 @@
         android:layout_height="1dp"
         android:background="#A0A0A0"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:layout_weight="1"/>
     <Button
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/goToListBtn"
+        android:id="@+id/viewOngoingUsersBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="목록으로"/>
+        android:layout_marginTop="5dp"
+        android:text="참여 인원 명단 보rl"/>
+
+    <Button
+        android:id="@+id/joinProjectBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="나도 하기"/>
 
 </LinearLayout>

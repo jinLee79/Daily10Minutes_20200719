@@ -1,5 +1,6 @@
 package kr.co.tjoeun.daily10minutes_20200719
 
+import android.content.Intent
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_view_project_detail.*
@@ -24,8 +25,17 @@ class ViewProjectDetailActivity : BaseActivity() {
 
     override fun setUpEvents() {
 
-        goToListBtn.setOnClickListener {
-            finish()
+        viewOngoingUsersBtn.setOnClickListener {
+
+//            프로젝트별 참여 명부 화면으로 이동 => 명단 확인
+            val myIntent = Intent(mContext, ViewOngoingUsersActivity::class.java)
+            myIntent.putExtra("projectId", mProjectId)
+            startActivity(myIntent)
+
+        }
+
+        joinProjectBtn.setOnClickListener {
+
         }
 
     }

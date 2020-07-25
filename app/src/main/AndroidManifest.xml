@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewProjectDetailActivity"></activity>
+        <activity android:name=".ViewOngoingUsersActivity"></activity>
+        <activity android:name=".ViewProjectDetailActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
