@@ -15,7 +15,7 @@ class ProjectAdapter(val mContext:Context, resId:Int, val mList:List<Project>) :
 
         var tempRow = convertView
         if (tempRow == null) {
-            tempRow = inf.inflate(R.layout.project_list_view, null)
+            tempRow = inf.inflate(R.layout.project_list_item, null)
         }
 
         val row = tempRow!!
