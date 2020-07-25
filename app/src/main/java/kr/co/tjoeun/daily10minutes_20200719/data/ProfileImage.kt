@@ -5,18 +5,20 @@ import org.json.JSONObject
 class ProfileImage() {
 
     var imgId = 0
-    var uploaderId = 0
     var imgUrl = ""
 
-    fun getProfileImageFromJson(json:JSONObject) : ProfileImage {
+    companion object {
 
-        val p = ProfileImage()
+//        프사 정보 파싱 기능
+        fun getProfileImageFromJson(json:JSONObject) : ProfileImage {
 
-        p.imgId = json.getInt("id")
-        p.uploaderId = json.getInt("user_id")
-        p.imgUrl = json.getString("img_url")
+            val pi = ProfileImage()
 
-        return p
+            pi.imgId = json.getInt("id")
+            pi.imgUrl = json.getString("img_url")
+
+            return pi
+        }
     }
 
 }
