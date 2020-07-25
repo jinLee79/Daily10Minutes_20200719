@@ -39,6 +39,6 @@ class ProjectAdapter(
 //        어느 화면에서 어떤 데이터를 어디에 뿌려줄거야?
         Glide.with(mContext).load(data.imageUrl).into(projectImg)
 
-        return tempRow
+        return row
     }
 }
