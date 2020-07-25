@@ -20,8 +20,6 @@ class ProjectAdapter(val mContext:Context, resId:Int, val mList:List<Project>) :
 
         val row = tempRow!!
 
-
-
+        return tempRow
     }
-
 }
