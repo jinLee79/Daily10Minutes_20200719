@@ -40,6 +40,7 @@ class MainActivity : BaseActivity() {
 
     fun getProjectListFromServer() {
 
+//        이건 AWS까지 갖다오는 먼 여정: 먼저 적어도 나중에 실행될 수 있다(비동기처리한다)
         ServerUtil.getRequestProjectList(mContext, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(json: JSONObject) {
 
@@ -64,6 +65,14 @@ class MainActivity : BaseActivity() {
 //                    프로젝트 목록 변수에 추가
                     mProjectList.add(project)
                 }
+
+//                목록이 추가되는 시점이 => 어댑터 연결 이후일 수도 있다.
+//                어댑터가 연결되고 나서 => 내용이 추가되는 것일 수도 있다.
+//                새로고침 시켜줄 필요가 있다.
+                runOnUiThread {
+                    mProjectAdapter.notifyDataSetChanged()
+                }
+
             }
         })
     }
