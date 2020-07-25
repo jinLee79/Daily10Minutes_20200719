@@ -49,11 +49,13 @@ class MainActivity : BaseActivity() {
 
 //                    프로젝트 정보 JSONObject => Project 형태의 인스턴스로 변환 => 목록에 담아야 함.
 //                    mProjectList.add(projectObj)  // 잘못된 코딩
-//                    JSON을 Project 변환
+//                    JSON => Project로 변환
 
+                    val project = Project.getProjectFromJson(projectObj)
 
+//                    프로젝트 목록 변수에 추가
+                    mProjectList.add(project)
                 }
-
             }
         })
     }
