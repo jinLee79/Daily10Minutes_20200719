@@ -28,7 +28,7 @@ class User {
 
             for (i in 0 until profile_images.length()) {
                 val profile_imgObj = profile_images.getJSONObject(i)
-                val profileImage = ProfileImage.getProfileImageFromJson(profileImageObj)
+                val profileImage = ProfileImage.getProfileImageFromJson(profile_imgObj)
                 u.profileImageList.add(profileImage)
             }
 
