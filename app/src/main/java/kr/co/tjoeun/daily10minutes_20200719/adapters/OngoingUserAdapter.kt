@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import kr.co.tjoeun.daily10minutes_20200719.R
 import kr.co.tjoeun.daily10minutes_20200719.data.User
@@ -35,8 +36,8 @@ class OngoingUserAdapter(val mContext:Context, resId:Int, val mList:List<User>) 
         email.text = data.email
         challengeDays.text = "도전 ${data.projectDays}일차"
 
-//        profiles_images
-//        Glide.with(mContext).load(data.)
+//        프사를 띄워주자. => 0번째 프사가 제일 최근 업로드 프사. => 0번째 사진을 무조건 보여주자.
+        Glide.with(mContext).load(data.profileImageList[0].imgUrl).into(profileImg)
 
         return row
     }
