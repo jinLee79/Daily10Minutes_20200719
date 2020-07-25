@@ -12,6 +12,7 @@
         android:gravity="center_vertical">
 
         <ImageView
+        android:id="@+id/projectImg"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@mipmap/ic_launcher"/>
@@ -23,6 +24,7 @@
             android:layout_marginLeft="10dp">
 
             <TextView
+                android:id="@+id/projectTitleViewTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="프로젝트 제목"
@@ -30,6 +32,7 @@
                 android:textColor="#000000"/>
 
             <TextView
+                android:id="@+id/projectDescriptionTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="프로젝트에 대한 설명"
