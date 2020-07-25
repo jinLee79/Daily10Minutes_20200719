@@ -3,6 +3,7 @@ package kr.co.tjoeun.daily10minutes_20200719
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_view_project_detail.*
@@ -47,8 +48,28 @@ class ViewProjectDetailActivity : BaseActivity() {
                 ServerUtil.postRequestProjectJoin(mContext, mProjectId, object:ServerUtil.JsonResponseHandler{
                     override fun onResponse(json: JSONObject) {
 
-                    }
+//                        신청에 성공했을 때만 데이터 갱신
 
+                        val code = json.getInt("code")
+                        if(code == 200) {
+
+                            val data = json.getJSONObject("data")
+                            val projectobj = data.getJSONObject("project")
+
+//                        갱신된 프로젝트 정보를 새로 대입
+                            mProject = Project.getProjectFromJson(projectobj)
+
+//                        별도 기능으로 만들어진 UI 데이터 세팅 기능 실행
+                            setProjectDataToUI()
+
+                        }
+                        else {
+                            val message = json.getString("message")
+                            runOnUiThread {
+                                Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
                 })
             })
             alert.setNegativeButton("아니오", null)
@@ -76,18 +97,25 @@ class ViewProjectDetailActivity : BaseActivity() {
 //                projectObj로 Project 형태로 변환 => 멤버변수로 저장
 
                 mProject = Project.getProjectFromJson(projectObj)
+//                데이터 화면 반영 기능 실행
+                setProjectDataToUI()
 
-//                프로젝트 정보를 화면에 반영
-                runOnUiThread {
-                    Glide.with(mContext).load(mProject.imageUrl).into(projectImg)
-                    projectTitleTxt.text = mProject.title
-                    projectDescriptionTxt.text = mProject.description
-                    proofMethodTxt.text = mProject.proofMethod
-                    challengersCountTxt.text = "${mProject.ongoingUsersCount}명 도전 진행 중"
-
-                }
             }
         })
+    }
+
+//    mProject에 세팅된 데이터를 화면에 반영하는 기능 별도 분리
+    fun setProjectDataToUI() {
+
+//        프로젝트 정보를 화면에 반영
+        runOnUiThread {
+            Glide.with(mContext).load(mProject.imageUrl).into(projectImg)
+            projectTitleTxt.text = mProject.title
+            projectDescriptionTxt.text = mProject.description
+            proofMethodTxt.text = mProject.proofMethod
+            challengersCountTxt.text = "${mProject.ongoingUsersCount}명 도전 진행 중"
+
+        }
     }
 
 }
