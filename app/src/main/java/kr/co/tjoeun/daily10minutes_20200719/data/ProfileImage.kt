@@ -2,18 +2,21 @@ package kr.co.tjoeun.daily10minutes_20200719.data
 
 import org.json.JSONObject
 
-class ProfileImage(
-    var imgId: Int,
-    var uploadeId: Int,
-    var imgUrl: String) {
+class ProfileImage() {
+
+    var imgId = 0
+    var uploaderId = 0
+    var imgUrl = ""
 
     fun getProfileImageFromJson(json:JSONObject) : ProfileImage {
 
-        val imgId = json.getInt("id")
-        val uploaderId = json.getInt("user_id")
-        val imgUrl = json.getString("img_url")
+        val p = ProfileImage()
 
-        return ProfileImage(imgId, uploadeId, imgUrl)
+        p.imgId = json.getInt("id")
+        p.uploaderId = json.getInt("user_id")
+        p.imgUrl = json.getString("img_url")
+
+        return p
     }
 
 }
