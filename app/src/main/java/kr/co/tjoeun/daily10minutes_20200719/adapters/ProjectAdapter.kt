@@ -1,7 +1,6 @@
 package kr.co.tjoeun.daily10minutes_20200719.adapters
 
 import android.content.Context
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import kr.co.tjoeun.daily10minutes_20200719.R
 import kr.co.tjoeun.daily10minutes_20200719.data.Project
-import org.w3c.dom.Text
 
 class ProjectAdapter(
     val mContext:Context,
@@ -29,7 +27,7 @@ class ProjectAdapter(
         val row = tempRow!!
 
         val projectImg = row.findViewById<ImageView>(R.id.projectImg)
-        val projectTitleViewTxt = row.findViewById<TextView>(R.id.projectTitleViewTxt)
+        val projectTitleViewTxt = row.findViewById<TextView>(R.id.projectTitleTxt)
         val projectDescriptionTxt = row.findViewById<TextView>(R.id.projectDescriptionTxt)
 
         val data = mList[position]

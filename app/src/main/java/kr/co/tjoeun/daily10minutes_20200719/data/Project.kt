@@ -9,6 +9,9 @@ class Project {
     var imageUrl = ""
     var description = ""
 
+    var proofMethod = ""
+    var ongoingUsersCount = 0
+
     companion object {
 
 //        적절한 JSONObject를 재료로 받아서 => Project 객체로 뽑아주는 기능
@@ -23,6 +26,8 @@ class Project {
             p.imageUrl = json.getString("img_url")
             p.description = json.getString("description")
 
+            p.proofMethod = json.getString("proof_method")
+            p.ongoingUsersCount = json.getInt("ongoing_users_count")
 
 //            완성된 p를 리턴
             return p

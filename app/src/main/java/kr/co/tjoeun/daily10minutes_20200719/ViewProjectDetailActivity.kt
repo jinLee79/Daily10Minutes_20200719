@@ -1,6 +1,5 @@
 package kr.co.tjoeun.daily10minutes_20200719
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_view_project_detail.*
@@ -24,6 +23,10 @@ class ViewProjectDetailActivity : BaseActivity() {
     }
 
     override fun setUpEvents() {
+
+        goToListBtn.setOnClickListener {
+            finish()
+        }
 
     }
 
@@ -49,7 +52,10 @@ class ViewProjectDetailActivity : BaseActivity() {
 //                프로젝트 정보를 화면에 반영
                 runOnUiThread {
                     Glide.with(mContext).load(mProject.imageUrl).into(projectImg)
-                    projectTitleViewTxt.text = mProject.title
+                    projectTitleTxt.text = mProject.title
+                    projectDescriptionTxt.text = mProject.description
+                    proofMethodTxt.text = mProject.proofMethod
+                    challengersCountTxt.text = "${mProject.ongoingUsersCount}명 도전 진행 중"
 
                 }
             }

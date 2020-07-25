@@ -19,7 +19,7 @@
             android:background="#88000000"/>
 
         <TextView
-            android:id="@+id/projectTitleViewTxt"
+            android:id="@+id/projectTitleTxt"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:text="설명 : "/>
         <TextView
+            android:id="@+id/projectDescriptionTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="설명 내용이 적힐 자리"
@@ -70,6 +71,7 @@
             android:layout_height="wrap_content"
             android:text="인증 방법 : "/>
         <TextView
+            android:id="@+id/proofMethodTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="인증 방법이 적힐 자리"
@@ -94,6 +96,7 @@
             android:layout_height="wrap_content"
             android:text="참여 인원 수 : "/>
         <TextView
+            android:id="@+id/challengersCountTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="~명 도전 진행중"
@@ -105,5 +108,16 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#A0A0A0"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_weight="1"/>
+    <Button
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/goToListBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="목록으로"/>
 
 </LinearLayout>
