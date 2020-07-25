@@ -12,15 +12,20 @@
         android:layout_height="250dp">
 
         <ImageView
+            android:id="@+id/projectImg"
+            android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="#88000000"/>
 
         <TextView
+            android:id="@+id/projectTitleViewTxt"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="프로젝트 제목 자리"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"/>
 
     </FrameLayout>
 

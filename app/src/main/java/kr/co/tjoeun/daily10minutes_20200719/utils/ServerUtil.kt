@@ -204,7 +204,7 @@ class ServerUtil {
 
 
 //            주소 가공이 끝나면 최종 String으로 변환. (다 가공하면 build하고 String으로 변환)
-//            어디로 갈지 (url) + 어떤 ㄷ이터를 가져갈지 (parameter) 첨부된 String
+//            어디로 갈지 (url) + 어떤 데이터를 가져갈지 (parameter) 첨부된 String
             val urlString = urlBuilder.build().toString()
 
 //            실제 전송 정보를 담는 Request 생성
