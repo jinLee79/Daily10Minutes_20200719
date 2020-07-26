@@ -18,12 +18,13 @@ class ViewProjectProofListActivity : BaseActivity() {
 //    몇번 프로젝트에 대한 인증목록인지
     var mProjectId = 0
 
-//    보고 있는 프로젝트가 어떤 프로젝트인지 (lateinit var 쓰는 이유는 null로 놓지 않기 위해
+//    보고 있는 프로젝트가 어떤 프로젝트인지 (lateinit var 쓰는 이유는 null로 놓지 않기 위해 "나중에 초기화 할게" 설정)
     lateinit var mProject : Project
 
 //    인증 게시글들이 담길 목록
     val mProofList = ArrayList<Proof>()
 
+//    인증글 뿌려주는 어댑터
     lateinit var mProofAdapter : ProofAdapter
 
 //    인증을 확인할 날짜를 저장해주는 변수
@@ -82,8 +83,13 @@ class ViewProjectProofListActivity : BaseActivity() {
 
         proofDateTxt.text = proofDateStr
 
-//        오늘 날짜의 인증 내역 가져오기
+//        서버에서 오늘 날짜의 인증 내역 가져오기 (시간 오래 걸림, 아래 어댑터 연결 코드 보다 오래 걸릴 수도)
         getProofListFromServer()
+
+//        어댑터와 리스트뷰 연결
+        mProofAdapter = ProofAdapter(mContext, R.layout.proof_list_item, mProofList)
+        proofListView.adapter = mProofAdapter
+
     }
 
 //    서버에서 이 프로젝트의 날짜별 인증 내역을 가져오는 기능
@@ -107,14 +113,13 @@ class ViewProjectProofListActivity : BaseActivity() {
                     mProofList.add(proof)
                 }
 
-                mProofAdapter = ProofAdapter(mContext, R.layout.proof_list_item, mProofList)
-
 //                프로젝트 제목 등 UI 반영 작업
 
                 runOnUiThread {
                     projectTitleTxt.text = mProject.title
-                    proofListView.adapter = mProofAdapter
 
+//                    리스트뷰의 내용 반영 => UI에 영향을 주는 행위
+                    mProofAdapter.notifyDataSetChanged()
                 }
             }
         })
