@@ -38,8 +38,25 @@ class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : Arr
 
         content.text = data.content
         userNickName.text = data.user.nickName
-        proofTime.text = SimpleDateFormat("yyyy년 MM월 dd일 a h시 m분 s초").format(data.proofTime.time)
+
         Glide.with(mContext).load(data.user.profileImageList[0].imgUrl).into(userProfileImg)
+
+//        인증일시 : 2020년 6월 9일 오전 2시 8분 양식으로 출력
+        proofTime.text = SimpleDateFormat("yyyy년 M월 d일 a h시 m분").format(data.proofTime.time)
+
+//        그림이 있느냐? 없느냐 구별 해야 함 => How? data의 이미지 주소 목록의 크기값 확인
+        if (data.imageUrlList.size == 0) {
+//            그림이 첨부가 안 된 경우 => 이미지뷰 숨김
+            proofImg.visibility = View.GONE
+        }
+        else {
+//            한장 이상의 그림이 첨부된 경우 => 이미지뷰 표시
+            proofImg.visibility = View.VISIBLE
+
+//            맨 앞장에 첨부된 그림을 실제로 표시
+            Glide.with(mContext).load(data.imageUrlList[0]).into(proofImg)
+
+        }
 
 
         return row
