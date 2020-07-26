@@ -60,8 +60,13 @@ class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : Arr
             Glide.with(mContext).load(data.imageUrlList[0]).into(proofImg)
         }
 
-        likeBtn.text = "좋아요 ${data.likeCnt.toString()} 개"
-        replyBtn.text = "답글 ${data.replyCnt.toString()} 개"
+        likeBtn.text = "좋아요 ${data.likeCnt} 개"
+        replyBtn.text = "답글 ${data.replyCnt} 개"
+
+//        만약, 이미 좋아요를 찍은 글이라면?
+        if (data.myLike) {
+            likeBtn.text = "좋아요 취소 ${data.likeCnt}개"
+        }
 
 //        좋아요 버튼 눌리는 이벤트
         likeBtn.setOnClickListener {

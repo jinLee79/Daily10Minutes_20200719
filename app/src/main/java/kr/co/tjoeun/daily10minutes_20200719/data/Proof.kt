@@ -17,6 +17,9 @@ class Proof {
     var likeCnt = 0
     var replyCnt = 0
 
+//    내가 좋아요를 찍어둔 게시글인가?
+    var myLike = false
+
     companion object {
 
 //        적당한 json을 넣으면 => Proof 로 변환해주는 기능
@@ -58,6 +61,8 @@ class Proof {
 
             p.likeCnt = json.getInt("like_count")
             p.replyCnt = json.getInt("reply_count")
+
+            p.myLike = json.getBoolean("my_like")
 
             return p
         }
