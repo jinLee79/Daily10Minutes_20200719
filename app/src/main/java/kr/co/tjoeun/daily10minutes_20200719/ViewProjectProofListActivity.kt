@@ -1,5 +1,6 @@
 package kr.co.tjoeun.daily10minutes_20200719
 
+import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,6 +23,26 @@ class ViewProjectProofListActivity : BaseActivity() {
 
     override fun setUpEvents() {
 
+//        날짜 변경 버튼을 누르면 proofDate에 저장된 날짜를 변경
+        changeProofDateBtn.setOnClickListener {
+
+//            날짜 선택하는 팝업창을 띄우자.
+            val datePickerDialog = DatePickerDialog(mContext, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+
+//                인증 날짜를 선택된 날짜로 변경
+                proofDate.set(Calendar.YEAR, year)
+                proofDate.set(Calendar.MONTH, month)
+                proofDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+//                변경된 인증 날짜를 화면에 반영
+                val sdf = SimpleDateFormat("yyyy년 M월 d일")
+                proofDateTxt.text = sdf.format(proofDate.time)
+
+            }, proofDate.get(Calendar.YEAR), proofDate.get(Calendar.MONTH), proofDate.get(Calendar.DAY_OF_MONTH))
+
+            datePickerDialog.show()
+        }
+
     }
 
     override fun setValues() {
@@ -31,8 +52,10 @@ class ViewProjectProofListActivity : BaseActivity() {
         val sdf = SimpleDateFormat("yyyy년 M월 d일")
 
         Log.d("proofDate", proofDate.toString())
+        Log.d("sdf" , sdf.toString())
         val proofDateStr = sdf.format(proofDate.time)
         Log.d("proofDate.time", proofDate.time.toString())
+        Log.d("proofDateStr", proofDateStr.toString())
         proofDateTxt.text = proofDateStr
 
     }
