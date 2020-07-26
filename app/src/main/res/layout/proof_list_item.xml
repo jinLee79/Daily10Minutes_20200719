@@ -18,12 +18,14 @@
             android:gravity="center_vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userProfileImg"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@mipmap/ic_launcher"
                 app:civ_border_width="2dp"/>
 
             <TextView
+                android:id="@+id/userNickNameTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="작성자 닉네임"
@@ -35,19 +37,22 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/proofTimeTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="작성 일시"/>
+                android:text="인증 일시"/>
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/contentTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="인증 게시글 내용"/>
 
         <ImageView
+            android:id="@+id/proofImg"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:scaleType="centerCrop"
