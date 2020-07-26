@@ -59,5 +59,30 @@
             android:layout_marginTop="10dp"
             android:src="@mipmap/ic_launcher"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <!--ListView에 버튼 넣을 때 focusable속성=false 넣으면 ListView도 이벤트 먹게 할 수 있음-->
+            <Button
+                android:id="@+id/likeBtn"
+                android:focusable="false"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="좋아요 0개"/>
+
+            <Button
+                android:id="@+id/replyBtn"
+                android:focusable="false"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="답글 0개"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>

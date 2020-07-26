@@ -13,6 +13,9 @@ class Proof {
 
     lateinit var user : User  // 인증을 올린 사람에 대한 정보
 
+//    좋아요 / 댓글 개수 저장 변수
+    var likeCnt = 0
+    var replyCnt = 0
 
     companion object {
 
@@ -52,6 +55,9 @@ class Proof {
 //            user JSONObject 추출 => User클래스 변환 => p.user에 저장
             val userObj = json.getJSONObject("user")
             p.user = User.getUserFromJson(userObj)
+
+            p.likeCnt = json.getInt("like_count")
+            p.replyCnt = json.getInt("reply_count")
 
             return p
         }

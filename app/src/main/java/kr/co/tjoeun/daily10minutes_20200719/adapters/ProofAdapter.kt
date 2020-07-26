@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -33,6 +34,9 @@ class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : Arr
         val content = row.findViewById<TextView>(R.id.contentTxt)
         val proofImg = row.findViewById<ImageView>(R.id.proofImg)
 
+        val likeCnt = row.findViewById<Button>(R.id.likeBtn)
+        val replyCnt = row.findViewById<Button>(R.id.replyBtn)
+
         //근거 데이터
         val data = mList[position]
 
@@ -55,9 +59,10 @@ class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : Arr
 
 //            맨 앞장에 첨부된 그림을 실제로 표시
             Glide.with(mContext).load(data.imageUrlList[0]).into(proofImg)
-
         }
 
+        likeCnt.text = "좋아요 ${data.likeCnt.toString()} 개"
+        replyCnt.text = "답글 ${data.replyCnt.toString()} 개"
 
         return row
     }

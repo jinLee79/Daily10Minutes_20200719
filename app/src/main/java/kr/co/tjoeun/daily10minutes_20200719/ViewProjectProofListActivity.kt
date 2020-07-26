@@ -112,7 +112,7 @@ class ViewProjectProofListActivity : BaseActivity() {
                 val proofs = projectObj.getJSONArray("proofs")
                 for (i in 0 until proofs.length()) {
                     val proofObj = proofs.getJSONObject(i)
-                    val proof = Proof.getProofFromJson(proofObj)
+                    val proof = Proof.getProofFromJson(proofObj)  // 파싱->멤버변수 저장
                     mProofList.add(proof)
                 }
 
