@@ -29,6 +29,16 @@ class ViewProjectDetailActivity : BaseActivity() {
 
     override fun setUpEvents() {
 
+//        다른 사람들의 참여 인증 확인하는 버튼
+        viewOtherProofBtn.setOnClickListener {
+
+//            인증 확인 화면 진입= > 어떤 프로젝트에 대해서인지 id값만 인증 확인화면에 전달
+            val myIntent = Intent(mContext, ViewProjectProofListActivity::class.java)
+            myIntent.putExtra("projectId", mProjectId)
+            startActivity(myIntent)
+        }
+
+
         viewOngoingUsersBtn.setOnClickListener {
 
 //            프로젝트별 참여 명부 화면으로 이동 => 명단 확인
@@ -36,6 +46,7 @@ class ViewProjectDetailActivity : BaseActivity() {
             myIntent.putExtra("projectId", mProjectId)
             startActivity(myIntent)
         }
+
 
         joinProjectBtn.setOnClickListener {
 
