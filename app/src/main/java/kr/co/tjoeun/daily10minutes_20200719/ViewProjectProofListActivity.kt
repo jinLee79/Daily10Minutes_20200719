@@ -4,6 +4,8 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_view_project_proof_list.*
+import kr.co.tjoeun.daily10minutes_20200719.adapters.ProofAdapter
+import kr.co.tjoeun.daily10minutes_20200719.data.Project
 import kr.co.tjoeun.daily10minutes_20200719.data.Proof
 import kr.co.tjoeun.daily10minutes_20200719.utils.ServerUtil
 import org.json.JSONObject
@@ -16,8 +18,13 @@ class ViewProjectProofListActivity : BaseActivity() {
 //    몇번 프로젝트에 대한 인증목록인지
     var mProjectId = 0
 
+//    보고 있는 프로젝트가 어떤 프로젝트인지 (lateinit var 쓰는 이유는 null로 놓지 않기 위해
+    lateinit var mProject : Project
+
 //    인증 게시글들이 담길 목록
     val mProofList = ArrayList<Proof>()
+
+    lateinit var mProofAdapter : ProofAdapter
 
 //    인증을 확인할 날짜를 저장해주는 변수
 //    proofDate => 기본값이 현재 시간으로 저장됨.
@@ -89,6 +96,26 @@ class ViewProjectProofListActivity : BaseActivity() {
         ServerUtil.getRequestProjectDetailWithProofList(mContext, mProjectId, dateStr, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(json: JSONObject) {
 
+                val data = json.getJSONObject("data")
+                val projectObj = data.getJSONObject("project")
+                mProject = Project.getProjectFromJson(projectObj)
+
+                val proofs = projectObj.getJSONArray("proofs")
+                for (i in 0 until proofs.length()) {
+                    val proofObj = proofs.getJSONObject(i)
+                    val proof = Proof.getProofFromJson(proofObj)
+                    mProofList.add(proof)
+                }
+
+                mProofAdapter = ProofAdapter(mContext, R.layout.proof_list_item, mProofList)
+
+//                프로젝트 제목 등 UI 반영 작업
+
+                runOnUiThread {
+                    projectTitleTxt.text = mProject.title
+                    proofListView.adapter = mProofAdapter
+
+                }
             }
         })
     }
