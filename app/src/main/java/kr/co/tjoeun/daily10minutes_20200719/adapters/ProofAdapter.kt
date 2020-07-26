@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import kr.co.tjoeun.daily10minutes_20200719.R
 import kr.co.tjoeun.daily10minutes_20200719.data.Proof
 import kr.co.tjoeun.daily10minutes_20200719.utils.ServerUtil
+import kr.co.tjoeun.daily10minutes_20200719.utils.TimeUtil
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 
@@ -45,7 +46,8 @@ class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : Arr
         Glide.with(mContext).load(data.user.profileImageList[0].imgUrl).into(userProfileImg)
 
 //        인증일시 : 2020년 6월 9일 오전 2시 8분 양식으로 출력
-        proofTime.text = SimpleDateFormat("yyyy년 M월 d일 a h시 m분").format(data.proofTime.time)
+        proofTime.text = TimeUtil.getTimeAgoStringFromCalendar(data.proofTime)
+
 
 //        그림이 있느냐? 없느냐 구별 해야 함 => How? data의 이미지 주소 목록의 크기값 확인
         if (data.imageUrlList.size == 0) {
@@ -67,6 +69,7 @@ class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : Arr
         if (data.myLike) {
             likeBtn.text = "좋아요 취소 ${data.likeCnt}개"
         }
+
 
 //        좋아요 버튼 눌리는 이벤트
         likeBtn.setOnClickListener {
