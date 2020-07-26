@@ -63,6 +63,14 @@ class ViewProjectDetailActivity : BaseActivity() {
 //                        별도 기능으로 만들어진 UI 데이터 세팅 기능 실행
                             setProjectDataToUI()
 
+//                            서버가 최신 정보를 못 내려줌 => 강제로 다시 불러오자. (임시방편)
+                            getProjectDetailFromServer()
+
+//                            토스트로 참여 신청 성공 메세지 출력
+                            runOnUiThread {
+                                Toast.makeText(mContext, "프로젝트에 참여 했습니다.", Toast.LENGTH_SHORT).show()
+                            }
+
                         }
                         else {
                             val message = json.getString("message")
