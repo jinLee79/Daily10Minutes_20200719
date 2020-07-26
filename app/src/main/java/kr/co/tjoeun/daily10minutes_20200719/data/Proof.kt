@@ -20,10 +20,25 @@ class Proof {
 
         fun getProofFromJson(json:JSONObject) : Proof {
             val p = Proof()
+
             p.id = json.getInt("id")
             p.content = json.getString("content")
 
-        }
+//            서버에서는 인증일시를 String으로 알려줌.
+//            앱에서는 인증일시를 Calendar로 저장해야 함.
+//            String => Calendar로 변환. SimpleDateFormat 필요.
 
+            val proofTimeStr = json.getString("proof_time")
+
+//            서버에서 내려주는 양식을 읽어올 SimpleDateFormat 생성
+//            "2020-06-09 02:53:34" 양식 분석
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+
+//            sdf를 이용해서 => 캘린더 변수에 시간 대입
+            p.proofTime.time = sdf.parse(proofTimeStr)
+
+
+            return p
+        }
     }
 }
