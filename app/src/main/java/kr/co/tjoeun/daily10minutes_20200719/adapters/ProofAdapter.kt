@@ -74,6 +74,13 @@ class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : Arr
                 override fun onResponse(json: JSONObject) {
                     val message = json.getString("message")
 
+//                    변경된 좋아요 개수 / 내 좋아요 여부를 data의 변수에 반영
+                    val dataObj = json.getJSONObject("data")
+                    val like = dataObj.getJSONObject("like")
+
+                    data.likeCnt = like.getInt("like_count")
+                    data.myLike = like.getBoolean("my_like")
+
 //                    여기서 Toast를 띄우고 싶은데, 어댑터에는 runOnUiThread 기능이 없다.
 //                    그래도 어떻게든 UIThread 안에서 UI 반영을 해야 앱이 동작함
 //                    UI Thread 기능을 해주는 것이 다음의 코드
@@ -82,6 +89,9 @@ class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : Arr
 //                    postDelayed는 몇 초 있다 실행, post는 바로 실행
                     myHandler.post {
                         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+
+//                        리스트 어댑터 새로고침 (이거 자체가 adapter이므로 바로 notify 하면 됨)
+                        notifyDataSetChanged()
                     }
 
                 }
