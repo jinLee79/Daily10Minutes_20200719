@@ -1,18 +1,17 @@
 package kr.co.tjoeun.daily10minutes_20200719.adapters
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.bumptech.glide.Glide
-import de.hdodenhof.circleimageview.CircleImageView
 import kr.co.tjoeun.daily10minutes_20200719.R
 import kr.co.tjoeun.daily10minutes_20200719.data.Proof
-import kr.co.tjoeun.daily10minutes_20200719.data.User
+import kr.co.tjoeun.daily10minutes_20200719.utils.ServerUtil
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 
 class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : ArrayAdapter<Proof>(mContext, resId, mList) {
@@ -34,8 +33,8 @@ class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : Arr
         val content = row.findViewById<TextView>(R.id.contentTxt)
         val proofImg = row.findViewById<ImageView>(R.id.proofImg)
 
-        val likeCnt = row.findViewById<Button>(R.id.likeBtn)
-        val replyCnt = row.findViewById<Button>(R.id.replyBtn)
+        val likeBtn = row.findViewById<Button>(R.id.likeBtn)
+        val replyBtn = row.findViewById<Button>(R.id.replyBtn)
 
         //근거 데이터
         val data = mList[position]
@@ -61,8 +60,28 @@ class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : Arr
             Glide.with(mContext).load(data.imageUrlList[0]).into(proofImg)
         }
 
-        likeCnt.text = "좋아요 ${data.likeCnt.toString()} 개"
-        replyCnt.text = "답글 ${data.replyCnt.toString()} 개"
+        likeBtn.text = "좋아요 ${data.likeCnt.toString()} 개"
+        replyBtn.text = "답글 ${data.replyCnt.toString()} 개"
+
+//        좋아요 버튼 눌리는 이벤트
+        likeBtn.setOnClickListener {
+            ServerUtil.postRequestLikeProof(mContext, data.id, object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(json: JSONObject) {
+                    val message = json.getString("message")
+
+//                    여기서 Toast를 띄우고 싶은데, 어댑터에는 runOnUiThread 기능이 없다.
+//                    그래도 어떻게든 UIThread 안에서 UI 반영을 해야 앱이 동작함
+//                    UI Thread 기능을 해주는 것이 다음의 코드
+                    val myHandler = Handler(Looper.getMainLooper())
+
+//                    postDelayed는 몇 초 있다 실행, post는 바로 실행
+                    myHandler.post {
+                        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+            })
+        }
 
         return row
     }

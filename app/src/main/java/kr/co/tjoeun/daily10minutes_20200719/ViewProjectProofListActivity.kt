@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_view_project_proof_list.*
+import kotlinx.android.synthetic.main.proof_list_item.*
 import kr.co.tjoeun.daily10minutes_20200719.adapters.ProofAdapter
 import kr.co.tjoeun.daily10minutes_20200719.data.Project
 import kr.co.tjoeun.daily10minutes_20200719.data.Proof
@@ -92,8 +93,8 @@ class ViewProjectProofListActivity : BaseActivity() {
 
     }
 
-//    서버에서 이 프로젝트의 날짜별 인증 내역을 가져오는 기능
 
+//    서버에서 이 프로젝트의 날짜별 인증 내역을 가져오는 기능
     fun getProofListFromServer() {
 
 //        선택해둔 날짜를 => 2020-06-08 형식의 String으로 가공
