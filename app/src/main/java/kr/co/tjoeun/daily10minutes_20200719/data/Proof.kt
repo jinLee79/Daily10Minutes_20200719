@@ -9,7 +9,7 @@ class Proof {
     var id = 0
     var content = ""
     var proofTime = Calendar.getInstance()  // 인증 일시를 분석해서 세팅 예정
-    val imageUrlList = ArrayList<String>()  // 이미지의 주소만 따서 목록으로 저장
+    var imageUrlList = ArrayList<String>()  // 이미지의 주소만 따서 목록으로 저장
 
     lateinit var user : User  // 인증을 올린 사람에 대한 정보
 
@@ -27,7 +27,6 @@ class Proof {
 //            서버에서는 인증일시를 String으로 알려줌.
 //            앱에서는 인증일시를 Calendar로 저장해야 함.
 //            String => Calendar로 변환. SimpleDateFormat 필요.
-
             val proofTimeStr = json.getString("proof_time")
 
 //            서버에서 내려주는 양식을 읽어올 SimpleDateFormat 생성
@@ -37,6 +36,16 @@ class Proof {
 //            sdf를 이용해서 => 캘린더 변수에 시간 대입
             p.proofTime.time = sdf.parse(proofTimeStr)
 
+
+//            images JSONArray 내부의 JSONObject 내부의 image_url들을 String으로 얻어내서
+//            p.이미지 주소 목록에 저장
+            val images =  json.getJSONArray("images")
+
+            for (i in 0 until images.length()) {
+                val imgObj = images.getJSONObject(i)
+                val imgUrl = imgObj.getString("img_url")
+                p.imageUrlList.add(imgUrl)
+            }
 
             return p
         }
