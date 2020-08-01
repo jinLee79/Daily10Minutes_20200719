@@ -14,8 +14,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <meta-data
-            android:name="com.google.android.actions"
-            android:resource="@xml/gray_border_box" />
+            android:name="com.google.android.actions"/>
 
         <activity android:name=".EditProjectProofActivity" />
         <activity android:name=".ViewProofDetailActivity" />

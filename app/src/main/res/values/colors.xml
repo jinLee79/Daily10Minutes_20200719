@@ -8,4 +8,6 @@
     <color name="lightGray">#EDEDED</color>
     <color name="white">#FFFFFF</color>
     <color name="darkGray">#A0A0A0</color>
+
+    <color name="naverRed">#Ff5151</color>
 </resources>

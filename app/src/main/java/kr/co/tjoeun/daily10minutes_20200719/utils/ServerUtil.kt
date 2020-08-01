@@ -183,7 +183,7 @@ class ServerUtil {
 
 //        답글 올리는 기능
 
-        fun postRequestProofReply(context: Context, proofId: Int, content: String, handler: JsonResponseHandler?) {  // handler는 null 여지 허용
+        fun postRequestReplyToProof(context: Context, proofId: Int, content: String, handler: JsonResponseHandler?) {  // handler는 null 여지 허용
 
 //            앱을 클라이언트 역할로 동작하게 해주는 변수
             val client = OkHttpClient()
@@ -445,12 +445,8 @@ class ServerUtil {
 
 //                    JSON내용 분석은 => 화면에서 진행하게 넘겨주자.
                     handler?.onResponse(json)
-
                 }
-
             })
-
-
         }
 
 //        프로젝트의 상세정보 + 참여중인 인원 목록 API 호출
@@ -501,12 +497,8 @@ class ServerUtil {
 
 //                    JSON내용 분석은 => 화면에서 진행하게 넘겨주자.
                     handler?.onResponse(json)
-
                 }
-
             })
-
-
         }
 
 //        프로젝트의 상세정보 + 날짜별 인증 게시글 목록 API 호출

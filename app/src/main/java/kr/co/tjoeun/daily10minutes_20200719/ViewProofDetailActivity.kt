@@ -1,8 +1,10 @@
 package kr.co.tjoeun.daily10minutes_20200719
 
 import android.os.Bundle
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_view_proof_detail.*
 import kotlinx.android.synthetic.main.reply_list_item.*
+import kr.co.tjoeun.daily10minutes_20200719.adapters.ReplyAdapter
 import kr.co.tjoeun.daily10minutes_20200719.data.Proof
 import kr.co.tjoeun.daily10minutes_20200719.data.Reply
 import kr.co.tjoeun.daily10minutes_20200719.utils.ServerUtil
@@ -20,6 +22,8 @@ class ViewProofDetailActivity : BaseActivity() {
 //    서버에서 내려주는 댓글들을 담을 목록
     var mReplyList = ArrayList<Reply>()
 
+    lateinit var mReplyAdapter : ReplyAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_proof_detail)
@@ -29,7 +33,29 @@ class ViewProofDetailActivity : BaseActivity() {
 
     override fun setUpEvents() {
         
-        postReplyBtn
+        postReplyBtn.setOnClickListener {
+            val inputContent = replyContentEdt.text.toString()
+
+            if (inputContent.length < 5) {
+                Toast.makeText(mContext, "댓글은 최소 5자 이상이어야 합니다.", Toast.LENGTH_SHORT).show()
+
+//                등록 거부 : 이벤트 처리 강제 종료
+                return@setOnClickListener
+            }
+
+            ServerUtil.postRequestReplyToProof(mContext, mProofId, inputContent, object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(json: JSONObject) {
+
+//                    인증글 데이터를 다시 받아오자. => 댓글 목록을 새로 가져오는 효과가 있다.
+                    getProofDataFromServer()
+
+//                    댓글 등록이 완료되면 입력칸을 비워주자.
+                    replyContentEdt.setText("")
+
+                }
+
+            })
+        }
 
     }
 
@@ -59,6 +85,13 @@ class ViewProofDetailActivity : BaseActivity() {
                     writerNickNameTxt.text = mProof.user.nickName
                     createAtTxt.text = TimeUtil.getTimeAgoStringFromCalendar(mProof.proofTime)
                     contentTxt.text = mProof.content
+
+//                    서버 통신 과정이 어댑터 연결보다 늦게 완료될 수 있다.
+                    mReplyAdapter.notifyDataSetChanged()
+
+//                    댓글을 불러오면 => 맨 밑으로 리스트뷰를 끌어 내려주자.
+//                    만약 댓글이 10개 => 0 ~ "9" 로 이동 : 마지막칸으로 이동
+                    replyListView.smoothScrollToPosition(mReplyList.size - 1)
                 }
 
             }

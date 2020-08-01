@@ -38,8 +38,8 @@ class ReplyAdapter(val mContext:Context, resId:Int, val mList:List<Reply>) : Arr
         //근거 데이터
         val data = mList[position]
 
-        nickName.text =
-
+        nickName.text = data.writer.nickName
+        content.text = data.content
 
         return row
     }
