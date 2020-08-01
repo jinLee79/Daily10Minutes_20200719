@@ -155,11 +155,27 @@ class ViewProjectDetailActivity : BaseActivity() {
 //                참여 중 버튼들 표시, 참가 버튼 숨기기
                 ongoingButtonLayout.visibility = View.VISIBLE
                 joinProjectBtn.visibility = View.GONE
+
+//                진행률 레이아웃 표시
+                progressLayout.visibility = View.VISIBLE
+
+//                진행률 계산해서 표시하기
+
+//                진행률을 변수로 저장
+                val progressRate = mProject.proofCount.toDouble() / mProject.completeDays.toDouble() * 100
+
+//                 stackOverFlow 활용 - 계산된 진행률을 소수점 2자리만 표기하는 String으로 변경
+                val progressRateStr = "%.2f".format(progressRate)
+
+                progressRateTxt.text = "${progressRateStr}% (${mProject.proofCount}/${mProject.completeDays})"
             }
             else {
                 ongoingButtonLayout.visibility = View.GONE
                 joinProjectBtn.visibility = View.VISIBLE
+
+                progressLayout.visibility = View.GONE
             }
+
         }
     }
 

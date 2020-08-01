@@ -15,6 +15,12 @@ class Project {
 //    내 현재 진행 상태를 표시하는 변수 : null => 참가 해본 적이 없는 상태
     var myLastStatus : String? = null
 
+//    완주까지 필요한 인증 횟수
+    var completeDays = 0
+
+//    내가 그동안 인증한 횟수
+    var proofCount = 0
+
     companion object {
 
 //        적절한 JSONObject를 재료로 받아서 => Project 객체로 뽑아주는 기능
@@ -36,10 +42,16 @@ class Project {
             if (!json.isNull("my_last_status")) {
 //                파싱 진행
                 p.myLastStatus = json.getString("my_last_status")
-            }
-            else {
+
+                p.completeDays = json.getInt("complete_days")
+
+//                내 인증 횟수는 목록을 불러올 떄는 안 내려줌. => null인지 체크하고나서 파싱
+                if (!json.isNull("proof_count")) {
+                    p.proofCount = json.getInt("proof_count")
+                }
 
             }
+
 
 //            완성된 p를 리턴
             return p

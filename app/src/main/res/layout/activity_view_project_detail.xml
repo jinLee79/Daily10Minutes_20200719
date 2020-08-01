@@ -121,6 +121,7 @@
         android:background="#A0A0A0"/>
 
     <LinearLayout
+        android:id="@+id/progressLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -133,7 +134,7 @@
             android:text="진행률 : "/>
 
         <TextView
-            android:id="@+id/processRateTxt"
+            android:id="@+id/progressRateTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="50% (1/2)"
