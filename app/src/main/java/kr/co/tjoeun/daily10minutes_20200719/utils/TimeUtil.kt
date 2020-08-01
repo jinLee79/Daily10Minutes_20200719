@@ -25,6 +25,13 @@ class TimeUtil {
 //            rawOffset : 시차를 밀리초 단위까지 기록. => 시간단위로 변환
             val timeOffSet = myPhoneTimeZone.rawOffset / 1000 / 60 / 60
 
+//            별도로 시차를 계산하기 위한 Calendar 변수를 따로 쓰자
+            val offsetCalendar = Calendar.getInstance()
+            offsetCalendar.time = cal.time
+
+//            시차를 계산하기 위한 변수에게 시간값을(시차만큼) 증가시키자
+            offsetCalendar.add(Calendar.HOUR, timeOffSet)
+
 //            재료로 들어온 cal에게 시간값을 시차만큼 증가시키자.
             cal.add(Calendar.HOUR, timeOffSet)
 
@@ -42,7 +49,7 @@ class TimeUtil {
 //            현재시간 - 재료로 들어오는 시간 => 간격이 얼마나 되는가?
 //            게산결과 : 1800000 등의 숫자로 나옴.
 //            1800000ms : 1800s : 30m
-            val msDiff = now.timeInMillis - cal.timeInMillis
+            val msDiff = now.timeInMillis - offsetCalendar.timeInMillis
 
             if (msDiff < 10 * 1000 ) {  // 10초 이내
                 return "방금 전"
@@ -61,7 +68,7 @@ class TimeUtil {
             }
             else {
                 val sdf = SimpleDateFormat("yyyy년 M월 d일 a h시 m분")
-                return sdf.format(cal.time)
+                return sdf.format(offsetCalendar.time)
             }
         }
     }
