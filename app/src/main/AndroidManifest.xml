@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <meta-data
-            android:name="com.google.android.actions"/>
-
         <activity android:name=".EditProjectProofActivity" />
         <activity android:name=".ViewProofDetailActivity" />
         <activity android:name=".ViewProjectProofListActivity" />

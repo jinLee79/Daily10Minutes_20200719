@@ -70,6 +70,21 @@ class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : Arr
 //        만약, 이미 좋아요를 찍은 글이라면?
         if (data.myLike) {
             likeBtn.text = "좋아요 취소 ${data.likeCnt}개"
+
+//            좋아요를 찍은 글의 테두리는 빨간색
+            likeBtn.setBackgroundResource(R.drawable.red_border_box)
+
+//            코틀린에서 글씨 색을 변경 =>빨간색으로
+            likeBtn.setTextColor(mContext.resources.getColor(R.color.naverRed))
+        }
+        else {
+//            좋아요를 안 누른 경우도 별도로 처리해야 => 재사용성에 의한 문제를 해결할 수 있다.
+            likeBtn.text = "좋아요 ${data.likeCnt}개"
+            likeBtn.setBackgroundResource(R.drawable.gray_border_box)
+
+//            글씨색 검정색으로
+            likeBtn.setTextColor(mContext.resources.getColor(R.color.black))
+
         }
 
 

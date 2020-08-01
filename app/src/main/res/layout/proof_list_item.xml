@@ -76,6 +76,8 @@
                 android:text="좋아요 0개"/>
 
             <Button
+                android:background="@drawable/gray_border_box"
+                android:layout_marginLeft="5dp"
                 android:id="@+id/replyBtn"
                 android:focusable="false"
                 android:layout_width="0dp"
