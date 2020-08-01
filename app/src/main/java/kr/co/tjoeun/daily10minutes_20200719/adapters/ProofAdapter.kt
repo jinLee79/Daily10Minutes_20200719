@@ -15,7 +15,6 @@ import kr.co.tjoeun.daily10minutes_20200719.data.Proof
 import kr.co.tjoeun.daily10minutes_20200719.utils.ServerUtil
 import kr.co.tjoeun.daily10minutes_20200719.utils.TimeUtil
 import org.json.JSONObject
-import java.text.SimpleDateFormat
 
 class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : ArrayAdapter<Proof>(mContext, resId, mList) {
 
@@ -33,7 +32,7 @@ class ProofAdapter(val mContext:Context, resId:Int, val mList:List<Proof>) : Arr
         val userProfileImg = row.findViewById<ImageView>(R.id.userProfileImg)
         val userNickName = row.findViewById<TextView>(R.id.userNickNameTxt)
         val proofTime = row.findViewById<TextView>(R.id.proofTimeTxt)
-        val content = row.findViewById<TextView>(R.id.contentTxt)
+        val content = row.findViewById<TextView>(R.id.proofContentTxt)
         val proofImg = row.findViewById<ImageView>(R.id.proofImg)
 
         val likeBtn = row.findViewById<Button>(R.id.likeBtn)

@@ -9,10 +9,13 @@ class Reply {
     lateinit var writer : User
     var likeCount = 0
 
+    var myLike = false
+
     companion object {
 
         fun getReplyFromJson(json : JSONObject) : Reply {
             val r = Reply()
+
             r.id = json.getInt("id")
             r.content = json.getString("content")
             r.likeCount = json.getInt("like_count")

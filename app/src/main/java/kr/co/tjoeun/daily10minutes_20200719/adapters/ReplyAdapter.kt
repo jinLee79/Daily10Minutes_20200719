@@ -25,20 +25,24 @@ class ReplyAdapter(val mContext:Context, resId:Int, val mList:List<Reply>) : Arr
 
         val row = tempRow!!
 
-        val nickName = row.findViewById<TextView>(R.id.replyNickNameTxt)
-        val content = row.findViewById<TextView>(R.id.contentTxt)
+        val replyWriterNickName = row.findViewById<TextView>(R.id.replyWriterNickNameTxt)
+        val replyContent = row.findViewById<TextView>(R.id.replyContentTxt)
         val likeBtn = row.findViewById<Button>(R.id.likeBtn)
+        val likeCntTxt = row.findViewById<TextView>(R.id.likeCntTxt)
 
         val likeLayout = row.findViewById<LinearLayout>(R.id.likeLayout)
 
         //근거 데이터
         val data = mList[position]
 
-        nickName.text = data.writer.nickName
-        content.text = data.content
+        replyWriterNickName.text = data.writer.nickName
+        replyContent.text = data.content
 
         if (data.likeCount == 0) {
             likeLayout.visibility = View.GONE
+        }
+        else {
+            likeCntTxt.text = "좋아요 ${data.likeCount}개"
         }
 
         likeBtn.setOnClickListener {
@@ -59,9 +63,6 @@ class ReplyAdapter(val mContext:Context, resId:Int, val mList:List<Reply>) : Arr
 
             })
         }
-
-
-
 
         return row
     }

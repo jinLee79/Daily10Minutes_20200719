@@ -36,7 +36,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/contentTxt"
+        android:id="@+id/proofContentTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"

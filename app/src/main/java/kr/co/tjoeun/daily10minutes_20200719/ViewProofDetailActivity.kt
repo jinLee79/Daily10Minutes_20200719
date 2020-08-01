@@ -3,7 +3,6 @@ package kr.co.tjoeun.daily10minutes_20200719
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_view_proof_detail.*
-import kotlinx.android.synthetic.main.reply_list_item.*
 import kr.co.tjoeun.daily10minutes_20200719.adapters.ReplyAdapter
 import kr.co.tjoeun.daily10minutes_20200719.data.Proof
 import kr.co.tjoeun.daily10minutes_20200719.data.Reply
@@ -53,16 +52,17 @@ class ViewProofDetailActivity : BaseActivity() {
                     replyContentEdt.setText("")
 
                 }
-
             })
         }
-
     }
 
     override fun setValues() {
 
         mProofId = intent.getIntExtra("proof_id", 0)
         getProofDataFromServer()
+
+        mReplyAdapter = ReplyAdapter(mContext, R.layout.reply_list_item, mReplyList)
+        replyListView.adapter = mReplyAdapter
     }
 
     fun getProofDataFromServer() {
@@ -84,7 +84,7 @@ class ViewProofDetailActivity : BaseActivity() {
                 runOnUiThread {
                     writerNickNameTxt.text = mProof.user.nickName
                     createAtTxt.text = TimeUtil.getTimeAgoStringFromCalendar(mProof.proofTime)
-                    contentTxt.text = mProof.content
+                    proofContentTxt.text = mProof.content
 
 //                    서버 통신 과정이 어댑터 연결보다 늦게 완료될 수 있다.
                     mReplyAdapter.notifyDataSetChanged()
