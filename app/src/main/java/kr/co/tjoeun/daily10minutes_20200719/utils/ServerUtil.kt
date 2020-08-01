@@ -181,6 +181,7 @@ class ServerUtil {
 
         }
 
+
 //        회원가입 요청을 해주는 기능
 
         fun putRequestSignUp(context: Context, email: String, pw: String, nickName: String, handler: JsonResponseHandler?) {  // handler는 null 여지 허용
