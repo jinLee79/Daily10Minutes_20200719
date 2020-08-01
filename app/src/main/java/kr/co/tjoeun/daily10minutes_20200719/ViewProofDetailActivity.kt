@@ -28,6 +28,8 @@ class ViewProofDetailActivity : BaseActivity() {
     }
 
     override fun setUpEvents() {
+        
+        postReplyBtn
 
     }
 

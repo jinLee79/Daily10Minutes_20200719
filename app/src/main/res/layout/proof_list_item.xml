@@ -67,6 +67,7 @@
 
             <!--ListView에 버튼 넣을 때 focusable속성=false 넣으면 ListView도 이벤트 먹게 할 수 있음-->
             <Button
+                android:background="@drawable/gray_border_box"
                 android:id="@+id/likeBtn"
                 android:focusable="false"
                 android:layout_width="0dp"
