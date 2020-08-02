@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/black"> <!-- 보통 layout_height 60dp 정도로 설정 -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="하루 10분 프로젝트"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_gravity="center"/> <!--FrameLayout은 gravity 속성 없으므로 layout_gravity로 TextView 자체의 위치를 설정-->
+
+
+</FrameLayout>

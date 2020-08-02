@@ -20,6 +20,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         setUpEvents()
         setValues()
+        setCustomActionBar()
     }
 
     override fun setUpEvents() {
