@@ -8,7 +8,6 @@ class Reply {
     var content = ""
     lateinit var writer : User
     var likeCount = 0
-
     var myLike = false
 
     companion object {
@@ -22,6 +21,8 @@ class Reply {
 
 //            user JSONObject 추출 => User 클래스로 변호나 => r.writer에 대입
             r.writer = User.getUserFromJson(json.getJSONObject("user"))
+
+            r.myLike = json.getBoolean("my_like")
 
             return r
         }
