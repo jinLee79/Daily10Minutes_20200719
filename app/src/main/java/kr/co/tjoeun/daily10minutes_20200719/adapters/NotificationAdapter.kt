@@ -32,7 +32,7 @@ class NotificationAdapter(val mContext:Context, resId:Int, val mList:List<Notifi
         notifyTitle.text = data.title
         notifyCreatedAt.text = TimeUtil.getTimeAgoStringFromCalendar(data.createdAt)
 
-        Glide.with(mContext).load(data.actUser.profileImageList[0]).into(notifyActUser)
+        Glide.with(mContext).load(data.actUser.profileImageList[0].imgUrl).into(notifyActUser)
 
         return row
     }

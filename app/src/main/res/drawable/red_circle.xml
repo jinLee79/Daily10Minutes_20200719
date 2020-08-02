@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--selector는 상황을 나눠서(예를 들어 누르냐 안 누르냐) 정해주는 것. 지금은 shape-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <solid
+        android:color="@color/red"/>
+
+</shape>

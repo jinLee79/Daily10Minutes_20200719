@@ -393,7 +393,6 @@ class ServerUtil {
 
         }
 
-
 //        프로젝트 목록을 가져와주는 기능
 
         fun getRequestProjectList(context: Context, handler: JsonResponseHandler?) { //화면에서 넘겨줄 값 없다. 토큰은 ContextUtil에 있음
