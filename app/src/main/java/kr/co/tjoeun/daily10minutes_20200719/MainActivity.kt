@@ -32,8 +32,26 @@ class MainActivity : BaseActivity() {
         ServerUtil.getRequestUnreadNotiCount(mContext, object: ServerUtil.JsonResponseHandler{
             override fun onResponse(json: JSONObject) {
 
-            }
+                val data = json.getJSONObject("data")
 
+//                안 읽은 알림 갯수 추출
+                val unreadNotiCount = data.getInt("unread_noti_count")
+
+//                갯수에 따른 UI 변경사항
+                runOnUiThread {
+
+//                    0개 : 갯수 숨겨주기
+//                    그외: 보여주고 갯수 반영
+                    if (unreadNotiCount == 0){
+                        notifyCntTxt.visibility = View.GONE
+                    }
+                    else {
+                        notifyCntTxt.visibility = View.VISIBLE
+                        notifyCntTxt.text = unreadNotiCount.toString()
+                    }
+                }
+
+            }
         })
     }
 
