@@ -81,6 +81,17 @@ class ReplyAdapter(val mContext:Context, resId:Int, val mList:List<Reply>) : Arr
         likeBtn.setOnClickListener {
             ServerUtil.postRequestLikeReply(mContext, data.id, object : ServerUtil.JsonResponseHandler {
                 override fun onResponse(json: JSONObject) {
+
+//                    서버가 알려주는 댓글의 변경된 상태를 data변수에 반영 (ui 바로 반영되게)
+                    val dataObj = json.getJSONObject("data")
+
+//                    dataObj 내부의 JSONObject => Reply 형태로 변환
+                    val like = Reply.getReplyFromJson(dataObj.getJSONObject("like"))
+
+//                    이미 리스트뷰에 뿌려져 있는 data 변수의 값 일부 변경
+                    data.likeCount = like.likeCount
+                    data.myLike = like.myLike
+
 //                    서버가 주는 메세지를 토스트로 출력
                     val message = json.getString("message")
 
