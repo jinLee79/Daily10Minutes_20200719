@@ -16,11 +16,11 @@ class MainActivity : BaseActivity() {
     lateinit var mProjectAdapter : ProjectAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)  // 바로 윗 부모인 BaseActivity의 onCreate 실행 => setCustomActionBar() 코드가 실행된다.
         setContentView(R.layout.activity_main)
         setUpEvents()
         setValues()
-        setCustomActionBar()
+//        setCustomActionBar()
     }
 
     override fun setUpEvents() {

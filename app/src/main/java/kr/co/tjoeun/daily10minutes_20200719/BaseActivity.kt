@@ -1,5 +1,6 @@
 package kr.co.tjoeun.daily10minutes_20200719
 
+import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -7,6 +8,19 @@ import androidx.appcompat.widget.Toolbar
 abstract class BaseActivity : AppCompatActivity() {
 
     val mContext = this
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+//        가장 처음 실행되는 SplashActivity 화면에 NoActionBar 설정 해뒀으므로 에러남
+//        액션바가 있는지 확인하고 실행. (하단에서 액션바 null 아니라고 우겼으니깐.. )
+        supportActionBar?.let {
+
+//            액션바가 null이 아닐 때만 실행되는 내용
+            setCustomActionBar()
+        }
+
+    }
 
 //    각각의 화면마다 다 구현해야할 내용이 달라지는 함수: abstract
     abstract fun setUpEvents()
