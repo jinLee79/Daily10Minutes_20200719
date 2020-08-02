@@ -33,6 +33,7 @@ class ReplyAdapter(val mContext:Context, resId:Int, val mList:List<Reply>) : Arr
         val likeBtn = row.findViewById<Button>(R.id.likeBtn)
         val likeCntTxt = row.findViewById<TextView>(R.id.likeCntTxt)
         val replyWrittenTime = row.findViewById<TextView>(R.id.replyWrittenTimeTxt)
+        val writeReReply = row.findViewById<TextView>(R.id.writeReReplyTxt)
 
 //        val likeLayout = row.findViewById<LinearLayout>(R.id.likeLayout)
 
@@ -106,6 +107,14 @@ class ReplyAdapter(val mContext:Context, resId:Int, val mList:List<Reply>) : Arr
                 }
 
             })
+        }
+
+//        TextView / ImageView / LinearLayout 등의 특이한 이벤트가 없는 모든 뷰들은
+//        onClickListener 이벤트처리가 가능하다.(왜 잘 안 쓰냐면, 버튼은 누르면 티가 나는데, 나머지 애들은 티가 잘 안 나옴)
+        writeReReply.setOnClickListener {
+
+            Toast.makeText(mContext, "아직 준비중인 기능입니다.", Toast.LENGTH_SHORT).show()
+
         }
 
         return row
