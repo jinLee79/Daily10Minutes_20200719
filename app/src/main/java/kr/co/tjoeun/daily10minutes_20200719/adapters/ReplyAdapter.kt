@@ -11,7 +11,9 @@ import android.widget.*
 import kr.co.tjoeun.daily10minutes_20200719.R
 import kr.co.tjoeun.daily10minutes_20200719.data.Reply
 import kr.co.tjoeun.daily10minutes_20200719.utils.ServerUtil
+import kr.co.tjoeun.daily10minutes_20200719.utils.TimeUtil
 import org.json.JSONObject
+import java.util.*
 
 class ReplyAdapter(val mContext:Context, resId:Int, val mList:List<Reply>) : ArrayAdapter<Reply>(mContext, resId, mList) {
 
@@ -30,6 +32,7 @@ class ReplyAdapter(val mContext:Context, resId:Int, val mList:List<Reply>) : Arr
         val replyContent = row.findViewById<TextView>(R.id.replyContentTxt)
         val likeBtn = row.findViewById<Button>(R.id.likeBtn)
         val likeCntTxt = row.findViewById<TextView>(R.id.likeCntTxt)
+        val replyWrittenTime = row.findViewById<TextView>(R.id.replyWrittenTimeTxt)
 
 //        val likeLayout = row.findViewById<LinearLayout>(R.id.likeLayout)
 
@@ -38,6 +41,9 @@ class ReplyAdapter(val mContext:Context, resId:Int, val mList:List<Reply>) : Arr
 
         replyWriterNickName.text = data.writer.nickName
         replyContent.text = data.content
+
+//        작성 시간 표시
+        replyWriterNickName.text = TimeUtil.getTimeAgoStringFromCalendar(data.createdAt)
 
 //        좋아요 갯수 처리 => 0개면 숨김, 그 이상이면 보여주고 갯수 반영
         if (data.likeCount == 0) {
