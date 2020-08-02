@@ -1,10 +1,8 @@
 package kr.co.tjoeun.daily10minutes_20200719
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_notification_list.*
 import kr.co.tjoeun.daily10minutes_20200719.adapters.NotificationAdapter
-import kr.co.tjoeun.daily10minutes_20200719.adapters.ReplyAdapter
 import kr.co.tjoeun.daily10minutes_20200719.data.Notification
 import kr.co.tjoeun.daily10minutes_20200719.utils.ServerUtil
 import org.json.JSONObject
@@ -25,7 +23,7 @@ class NotificationListActivity : BaseActivity() {
     override fun setUpEvents() {
 
 //        서버에서 알림 목록 받아오기
-        getNotificationListFromServer()
+        getNotificationListWithNotisFromServer()
 
     }
 
@@ -35,9 +33,9 @@ class NotificationListActivity : BaseActivity() {
         notificationListView.adapter = mNotificationAdapter
     }
 
-    fun getNotificationListFromServer() {
+    fun getNotificationListWithNotisFromServer() {
 
-        ServerUtil.getRequestNotificationList(mContext, object : ServerUtil.JsonResponseHandler{
+        ServerUtil.getRequestNotificationListWithNotis(mContext, object : ServerUtil.JsonResponseHandler{
             override fun onResponse(json: JSONObject) {
                 val data = json.getJSONObject("data")
                 val notifications = data.getJSONArray("notifications")
