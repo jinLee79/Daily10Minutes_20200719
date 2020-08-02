@@ -449,9 +449,9 @@ class ServerUtil {
 
         }
 
-//        알림 목록을 가져와주는 기능
+//        안 읽은 알림 갯수만 가져오는 기능 - 메인화면에서 알림 갯수 표기 용도
 
-        fun getRequestNotificationList(context: Context, handler: JsonResponseHandler?) { //화면에서 넘겨줄 값 없다. 토큰은 ContextUtil에 있음
+        fun getRequestUnreadNotiCount(context: Context, handler: JsonResponseHandler?) { //화면에서 넘겨줄 값 없다. 토큰은 ContextUtil에 있음
 
 //            서버에 Request를 날려주는 변수
             val client = OkHttpClient()
@@ -460,7 +460,7 @@ class ServerUtil {
 //            주소에 붙여주는 방식 => 쉽게 가공하도록 도와주는 변수 생성.
 //            val urlBuilder = HttpUrl.parse("${BASE_URL}/project")
             val urlBuilder = "${BASE_URL}/notification".toHttpUrlOrNull()!!.newBuilder()
-//            urlBuilder.addEncodedQueryParameter("이름표", "전달값")
+            urlBuilder.addEncodedQueryParameter("need_all_notis", "false")
 
 
 //            주소 가공이 끝나면 최종 String으로 변환. (다 가공하면 build하고 String으로 변환)
@@ -505,9 +505,9 @@ class ServerUtil {
 
         }
 
-//        알림 목록을 가져와주는 기능 + 알림 목록까지 API 호출
+//        알림 목록을 가져와주는 기능 + 알림 목록까지 API 호출 - 알림 리스트뷰에서 이용
 
-        fun getRequestNotificationListWithNotis(context: Context, handler: JsonResponseHandler?) { //화면에서 넘겨줄 값 없다. 토큰은 ContextUtil에 있음
+        fun getRequestNotificationList(context: Context, handler: JsonResponseHandler?) { //화면에서 넘겨줄 값 없다. 토큰은 ContextUtil에 있음
 
 //            서버에 Request를 날려주는 변수
             val client = OkHttpClient()
@@ -516,7 +516,7 @@ class ServerUtil {
 //            주소에 붙여주는 방식 => 쉽게 가공하도록 도와주는 변수 생성.
 //            val urlBuilder = HttpUrl.parse("${BASE_URL}/project")
             val urlBuilder = "${BASE_URL}/notification".toHttpUrlOrNull()!!.newBuilder()
-            urlBuilder.addEncodedQueryParameter("need_all_notis", true.toString())
+            urlBuilder.addEncodedQueryParameter("need_all_notis", "true")
 
 
 //            주소 가공이 끝나면 최종 String으로 변환. (다 가공하면 build하고 String으로 변환)

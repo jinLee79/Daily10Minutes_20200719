@@ -25,6 +25,18 @@ class MainActivity : BaseActivity() {
 //        setCustomActionBar()
     }
 
+//    메인화면에 들어올 때마다 (다른 곳에 갔다 올 때) 실행되는 함수
+    override fun onResume() {
+        super.onResume()
+
+        ServerUtil.getRequestUnreadNotiCount(mContext, object: ServerUtil.JsonResponseHandler{
+            override fun onResponse(json: JSONObject) {
+
+            }
+
+        })
+    }
+
     override fun setUpEvents() {
 
 //        알림 이미지뷰를 누르면 알림 목록 화면으로 이동

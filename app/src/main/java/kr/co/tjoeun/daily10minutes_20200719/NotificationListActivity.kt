@@ -35,7 +35,7 @@ class NotificationListActivity : BaseActivity() {
 
     fun getNotificationListWithNotisFromServer() {
 
-        ServerUtil.getRequestNotificationListWithNotis(mContext, object : ServerUtil.JsonResponseHandler{
+        ServerUtil.getRequestNotificationList(mContext, object : ServerUtil.JsonResponseHandler{
             override fun onResponse(json: JSONObject) {
                 val data = json.getJSONObject("data")
                 val notifications = data.getJSONArray("notifications")
