@@ -30,7 +30,7 @@ class ReplyAdapter(val mContext:Context, resId:Int, val mList:List<Reply>) : Arr
         val likeBtn = row.findViewById<Button>(R.id.likeBtn)
         val likeCntTxt = row.findViewById<TextView>(R.id.likeCntTxt)
 
-        val likeLayout = row.findViewById<LinearLayout>(R.id.likeLayout)
+//        val likeLayout = row.findViewById<LinearLayout>(R.id.likeLayout)
 
         //근거 데이터
         val data = mList[position]
@@ -38,10 +38,13 @@ class ReplyAdapter(val mContext:Context, resId:Int, val mList:List<Reply>) : Arr
         replyWriterNickName.text = data.writer.nickName
         replyContent.text = data.content
 
+//        좋아요 갯수 처리 => 0개면 숨김, 그 이상이면 보여주고 갯수 반영
         if (data.likeCount == 0) {
-            likeLayout.visibility = View.GONE
+//            likeLayout.visibility = View.GONE
+            likeCntTxt.visibility = View.GONE
         }
         else {
+            likeCntTxt.visibility = View.VISIBLE
             likeCntTxt.text = "좋아요 ${data.likeCount}개"
         }
 
