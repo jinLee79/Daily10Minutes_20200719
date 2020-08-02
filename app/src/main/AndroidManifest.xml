@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kr.co.tjoeun.daily10minutes_20200719">
-
     <!-- 인터넷 권한 허가 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".NotificationListActivity"></activity>
         <activity android:name=".EditProjectProofActivity" />
         <activity android:name=".ViewProofDetailActivity" />
         <activity android:name=".ViewProjectProofListActivity" />

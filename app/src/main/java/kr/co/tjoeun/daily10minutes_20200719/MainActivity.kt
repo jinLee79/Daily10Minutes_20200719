@@ -3,7 +3,9 @@ package kr.co.tjoeun.daily10minutes_20200719
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_notification_list.*
 import kr.co.tjoeun.daily10minutes_20200719.adapters.ProjectAdapter
 import kr.co.tjoeun.daily10minutes_20200719.data.Project
 import kr.co.tjoeun.daily10minutes_20200719.utils.ServerUtil
@@ -24,6 +26,14 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setUpEvents() {
+
+//        알림 이미지뷰를 누르면 알림 목록 화면으로 이동
+        notificationImg.setOnClickListener {
+
+            val myIntent = Intent(mContext, NotificationListActivity::class.java)
+            startActivity(myIntent)
+
+        }
 
 //        각 프로젝트를 눌렀을 때 상세화면으로 이동
         projectListView.setOnItemClickListener { parent, view, position, id ->
@@ -49,6 +59,9 @@ class MainActivity : BaseActivity() {
 //        서버에서 받아오고 난 후에 어댑터 연결
         mProjectAdapter = ProjectAdapter(mContext, R.layout.project_list_item, mProjectList)
         projectListView.adapter = mProjectAdapter
+
+//        메인화면에서는 알림 버튼이 나오는게 필요함.
+        notificationImg.visibility = View.VISIBLE
 
     }
 
