@@ -3,7 +3,9 @@ package kr.co.tjoeun.daily10minutes_20200719
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_notification_list.*
 import kr.co.tjoeun.daily10minutes_20200719.adapters.ProjectAdapter
@@ -23,6 +25,8 @@ class MainActivity : BaseActivity() {
         setUpEvents()
         setValues()
 //        setCustomActionBar()
+
+//        Log.d("디바이스토큰", FirebaseInstanceId.getInstance().token)
     }
 
 //    메인화면에 들어올 때마다 (다른 곳에 갔다 올 때) 실행되는 함수
