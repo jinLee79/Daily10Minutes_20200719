@@ -71,7 +71,7 @@ class ViewOngoingUsersActivity : BaseActivity() {
 
 //                프로젝트 정보 UI 반영
                 runOnUiThread {
-                    titleTxt.text = mProject.title
+                    notifyTitleTxt.text = mProject.title
                     userCountTxt.text = "참여 중 인원 : ${mProject.ongoingUsersCount}명"
 
 //                    참여중인 사용자 명단도 반영
