@@ -12,6 +12,7 @@ class NotificationListActivity : BaseActivity() {
     lateinit var mNotificationAdapter: NotificationAdapter
 
     val mNotificationList = ArrayList<Notification>()
+    var notiId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,18 +23,18 @@ class NotificationListActivity : BaseActivity() {
 
     override fun setUpEvents() {
 
-//        서버에서 알림 목록 받아오기
-        getNotificationListWithNotisFromServer()
-
     }
 
     override fun setValues() {
+
+//        서버에서 알림 목록 받아오기
+        getNotificationListFromServer()
 
         mNotificationAdapter = NotificationAdapter(mContext, R.layout.notification_list_item, mNotificationList)
         notificationListView.adapter = mNotificationAdapter
     }
 
-    fun getNotificationListWithNotisFromServer() {
+    fun getNotificationListFromServer() {
 
         ServerUtil.getRequestNotificationList(mContext, object : ServerUtil.JsonResponseHandler{
             override fun onResponse(json: JSONObject) {
@@ -45,11 +46,14 @@ class NotificationListActivity : BaseActivity() {
                     mNotificationList.add(notification)
                 }
 
+//                받아 온 모든 알림 중 최신 알림의 id값을 서버에 전달 => 여기까지 읽음 처리
+                ServerUtil.postRequestNotiConfirm(mContext, mNotificationList[0].id, null)
+
                 runOnUiThread {
                     mNotificationAdapter.notifyDataSetChanged()
                 }
             }
-
         })
+
     }
 }
